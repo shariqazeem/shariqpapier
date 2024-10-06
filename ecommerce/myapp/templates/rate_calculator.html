@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Copy Production Rate Calculator</h2>
+    <div class="form-group">
+        <label for="customerName">Customer Name</label>
+        <input type="text" class="form-control" id="customerName" placeholder="Enter customer name">
+    </div>
+    
+    <form id="production-rate-form">
+        <!-- Cost of Paper Section -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">Cost of Paper</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="paperWidth">Paper Width (e.g., 17)</label>
+                            <input type="number" class="form-control" id="paperWidth" placeholder="Enter paper width">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="paperHeight">Paper Height (e.g., 27)</label>
+                            <input type="number" class="form-control" id="paperHeight" placeholder="Enter paper height">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="gram">Gram </label>
+                            <input type="number" class="form-control" id="gram" placeholder="Enter gram">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="gramRate">Gram Rate</label>
+                            <input type="number" class="form-control" id="gramRate" placeholder="Enter gram rate">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="sheet">Sheet</label>
+                            <input type="number" class="form-control" id="sheet" placeholder="Enter number of sheets">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="paperLabour">Labour Cost</label>
+                            <input type="number" class="form-control" id="paperLabour" placeholder="Enter labour cost">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="rimRate">Rim Rate</label>
+                    <input type="text" class="form-control" id="rimRate" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="totalPaperCost">Total Cost of Paper</label>
+                    <input type="text" class="form-control" id="totalPaperCost" readonly>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cost of Box Board Section -->
+        <div class="card mb-4">
+            <div class="card-header bg-secondary text-white">Cost of Box Board</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="boxboardWidth">boxboard Width (e.g., 17)</label>
+                            <input type="number" class="form-control" id="boxboardWidth"
+                                placeholder="Enter boxboard width">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="boxboardHeight">boxboard Height (e.g., 27)</label>
+                            <input type="number" class="form-control" id="boxboardHeight"
+                                placeholder="Enter boxboard height">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="boxboardGram">Gram</label>
+                            <input type="number" class="form-control" id="boxboardGram" placeholder="Enter gram">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="boxboardRate">Rate</label>
+                            <input type="number" class="form-control" id="boxboardRate" placeholder="Enter rate">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="boxboardLabour">Labour Cost</label>
+                            <input type="number" class="form-control" id="boxboardLabour"
+                                placeholder="Enter labour cost">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="totalBoxBoardCost">Total Cost of Box Board</label>
+                        <input type="text" class="form-control" id="totalBoxBoardCost" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Costs Section -->
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">Other Costs</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="rollingCost">Rolling Cost</label>
+                            <input type="number" class="form-control" id="rollingCost" placeholder="Enter rolling cost">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="labourCost">Labour Cost</label>
+                            <input type="number" class="form-control" id="labourCost"
+                                placeholder="Enter additional labour cost">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="printingCost">Printing Cost</label>
+                            <input type="number" class="form-control" id="printingCost"
+                                placeholder="Enter printing cost">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="laminationCost">lamination Cost</label>
+                            <input type="number" class="form-control" id="laminationCost"
+                                placeholder="Enter lamination cost">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculation Result Section -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">Total Cost Calculation</div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="totalCost">Total Cost</label>
+                    <input type="text" class="form-control" id="totalCost" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="totalCost12">Total Cost (12 pieces)</label>
+                    <input type="text" class="form-control" id="totalCost12" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="pricePerCopy">Price per Copy</label>
+                    <input type="text" class="form-control" id="pricePerCopy" readonly>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" id="calculateBtn">Calculate</button>
+
+    </form>
+</div>
+
+
+<script>
+    document.getElementById('calculateBtn').addEventListener('click', function () {
+    // Get values from the form
+    const customerName = document.getElementById('customerName').value;
+    const paperWidth = parseFloat(document.getElementById('paperWidth').value);
+    const paperHeight = parseFloat(document.getElementById('paperHeight').value);
+    const gram = parseFloat(document.getElementById('gram').value);
+    const gramRate = parseFloat(document.getElementById('gramRate').value);
+    const sheet = parseFloat(document.getElementById('sheet').value);
+    const labour = parseFloat(document.getElementById('paperLabour').value);
+    const boxboardWidth = parseFloat(document.getElementById('boxboardWidth').value);
+    const boxboardHeight = parseFloat(document.getElementById('boxboardHeight').value);
+    const boxboardGram = parseFloat(document.getElementById('boxboardGram').value);
+    const boxboardRate = parseFloat(document.getElementById('boxboardRate').value);
+    const boxboardLabour = parseFloat(document.getElementById('boxboardLabour').value);
+    const rollingCost = parseFloat(document.getElementById('rollingCost').value);
+    const additionalLabourCost = parseFloat(document.getElementById('labourCost').value);
+    const printingCost = parseFloat(document.getElementById('printingCost').value);
+    const laminationCost = parseFloat(document.getElementById('laminationCost').value);
+
+    // Calculate Paper Size
+    const paperSize = paperWidth * paperHeight;
+
+    // Calculate Rim Rate
+    const rimRate = ((gram * paperSize) / 3100) * gramRate + labour;
+    document.getElementById('rimRate').value = rimRate.toFixed(2);
+
+    // Calculate Total Cost of Paper
+    const totalPaperCost = rimRate * sheet;
+    document.getElementById('totalPaperCost').value = totalPaperCost.toFixed(2);
+
+    // Calculate Box Board Size
+    const boxboardSize = boxboardWidth * boxboardHeight;
+
+    // Calculate Box Board Cost
+    const totalBoxBoardCost = boxboardSize * boxboardGram * boxboardRate / 15500 * 2.5 + boxboardLabour;
+    document.getElementById('totalBoxBoardCost').value = totalBoxBoardCost.toFixed(2);
+
+    // Calculate Total Cost
+    const totalCost = totalPaperCost + totalBoxBoardCost + rollingCost + additionalLabourCost + printingCost + laminationCost;
+    document.getElementById('totalCost').value = totalCost.toFixed(2);
+
+    // Calculate Total Cost for 12 Pieces
+    const totalCost12 = totalCost / 7 / 12;
+    document.getElementById('totalCost12').value = totalCost12.toFixed(2);
+
+    // Calculate Price per Copy
+    const pricePerCopy = totalCost12 / 12;
+    document.getElementById('pricePerCopy').value = pricePerCopy.toFixed(2);
+
+    // Prepare data to be sent to the server
+    const data = {
+        customer_name: customerName,
+        paper_width: paperWidth,
+        paper_height: paperHeight,
+        gram: gram,
+        gram_rate: gramRate,
+        sheet: sheet,
+        labour_cost: labour,
+        boxboard_width: boxboardWidth,
+        boxboard_height: boxboardHeight,
+        boxboard_gram: boxboardGram,
+        boxboard_rate: boxboardRate,
+        boxboard_labour: boxboardLabour,
+        rolling_cost: rollingCost,
+        additional_labour_cost: additionalLabourCost,
+        printing_cost: printingCost,
+        lamination_cost: laminationCost,
+        total_cost: totalCost,
+        total_cost_12: totalCost12,
+        price_per_copy: pricePerCopy
+    };
+
+    // Send data to the server
+    fetch('/save_rates/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.status === 'success') {
+            alert('Rates saved successfully!');
+        } else {
+            alert('Error saving rates.');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
+
+</script>
+{% endblock body %}

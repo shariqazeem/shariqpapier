@@ -1,0 +1,5 @@
+﻿Django==5.0.2
+django-ckeditor==6.7.1
+mysqlclient==2.2.4
+pillow==10.2.0
+paypalrestsdk
