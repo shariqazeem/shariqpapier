@@ -53,7 +53,7 @@
                 <!-- Make the whole card clickable to open the product details page -->
                 <a href="{% url 'product_details' product.id %}" class="text-decoration-none">
                     <div class="card-body d-flex justify-content-center align-items-center">
-                        <img style="width: 15rem; height: 21rem;" src="{{ product.image.url }}" class="card-img-top image-hover" alt="...">
+                        <img src="{{ product.image.url }}" class="card-img-top image-hover" alt="...">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ product.title }}</h5>
