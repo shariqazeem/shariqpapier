@@ -5,15 +5,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: myapp
-    container_name: django_container
+    image: myapp2  # Rename the image to differentiate from other projects
+    container_name: django_container_2  # Change the container name to avoid conflict
     env_file:
       - .env  # Load environment variables from .env file
     environment:
       - DJANGO_SETTINGS_MODULE=ecommerce.settings
       - DJANGO_DEBUG=False
     ports:
-      - "80:8000"
+      - "8080:8000"  # Use a different port to avoid conflict with existing containers
     volumes:
       - ./media:/app/media
     restart: always
